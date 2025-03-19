@@ -6,21 +6,21 @@ import ArchitectureDiagram from '../../components/ArchitectureDiagram';
 
 // Slide content data
 const slideData = {
-  title: "N8N-Based Solution Overview",
+  title: "Hybrid Solution Overview",
   pageNumber: 5,
   totalPages: 19,
   components: [
-    { name: "N8N", description: "Hosted on Azure VPS, workflow automation platform", color: "border-blue-500" },
-    { name: "Supabase Postgres", description: "Database for ticket and workflow data", color: "border-green-500" },
-    { name: "NocoDB", description: "Admin interface for business users", color: "border-purple-500" },
-    { name: "CoPilot", description: "Acts as a router for workflows", color: "border-yellow-500" },
-    { name: "SharePoint", description: "Document storage integration", color: "border-orange-500" },
-    { name: "FreshServices", description: "API and webhook connections", color: "border-red-500" }
+    { name: "N8N", description: "Handles heavy lifting automation tasks (managed by Umbral)", color: "border-blue-500" },
+    { name: "Supabase Postgres", description: "Backend database (managed by Umbral)", color: "border-green-500" },
+    { name: "Microsoft Teams", description: "User-facing chat interface", color: "border-purple-500" },
+    { name: "CoPilot", description: "User-facing AI assistant and workflow router", color: "border-yellow-500" },
+    { name: "SharePoint", description: "Document storage and knowledge base", color: "border-orange-500" },
+    { name: "FreshServices", description: "Ticketing system with API connections", color: "border-red-500" }
   ],
   connections: [
     { from: "FreshServices", to: "N8N", label: "Webhooks" },
     { from: "N8N", to: "Supabase Postgres", label: "Data storage" },
-    { from: "Supabase Postgres", to: "NocoDB", label: "Admin interface" },
+    { from: "Microsoft Teams", to: "CoPilot", label: "User interface" },
     { from: "CoPilot", to: "N8N", label: "Workflow routing" },
     { from: "N8N", to: "SharePoint", label: "Document operations" },
     { from: "N8N", to: "FreshServices", label: "API operations" }
@@ -43,7 +43,7 @@ const slideData = {
         <CardContent className="p-6">
           <ArchitectureDiagram 
             client:load
-            title="N8N-Based Solution Architecture"
+            title="Hybrid Architecture: Microsoft Frontend + N8N Backend"
             components={slideData.components}
             connections={slideData.connections}
           />
@@ -55,11 +55,11 @@ const slideData = {
       <div class="mt-6 p-4 bg-muted rounded-lg">
         <h3 class="font-semibold mb-2">Key Benefits</h3>
         <ul class="space-y-2 list-disc pl-5">
-          <li>Open-source extensibility with 300+ pre-built integrations</li>
-          <li>Advanced webhook processing and custom JavaScript transformations</li>
-          <li>Flexible hosting options on Azure VPS</li>
-          <li>Direct database operations with Supabase Postgres</li>
-          <li>Business-friendly admin interface with NocoDB</li>
+          <li><strong>Familiar User Experience:</strong> HG Fenton team continues to use Microsoft Teams and Copilot</li>
+          <li><strong>Technical Complexity Hidden:</strong> N8N and database managed by Umbral, no technical burden on your team</li>
+          <li><strong>Best of Both Worlds:</strong> Microsoft ecosystem for user interactions, N8N for powerful automation</li>
+          <li><strong>Flexible Integration:</strong> 300+ pre-built connectors for future expansion</li>
+          <li><strong>Cost-Effective:</strong> Reduced licensing costs while maintaining Microsoft compatibility</li>
         </ul>
       </div>
     </AnimatedContent>

@@ -10,59 +10,85 @@ const slideData = {
   totalPages: 19,
   msStackTimeline: [
     { 
-      phase: "Phase 1 - Foundational Development", 
-      duration: "45 days", 
+      phase: "Phase 1A - Knowledge Base Setup (Days 1-20)", 
+      duration: "20 days", 
       activities: [
         "Export and analyze historical ticket data",
-        "Build comprehensive knowledge base",
-        "Develop chatbot using Microsoft Copilot Studio",
-        "Implement Power Automate workflows",
-        "Microsoft Teams integration",
-        "Training and documentation",
-        "Sequential Knowledge Base Search"
+        "Configure SharePoint storage for vector embeddings",
+        "Set up Microsoft Copilot Studio environment",
+        "Develop initial RAG framework with SharePoint"
       ] 
     },
     { 
-      phase: "Phase 2 - Advanced Automation", 
-      duration: "30 days", 
+      phase: "Phase 1B - Workflow Development (Days 21-45)", 
+      duration: "25 days", 
+      activities: [
+        "Implement Power Automate flows for ticket processing",
+        "Configure Microsoft Teams integration",
+        "Develop user interface components",
+        "Training and documentation"
+      ] 
+    },
+    { 
+      phase: "Phase 2A - API Integration (Days 46-65)", 
+      duration: "20 days", 
       activities: [
         "FreshService API integration",
-        "Real-time ticket processing",
-        "Enhanced automation capabilities",
-        "Performance monitoring tools",
-        "System optimization"
+        "Real-time ticket processing with Copilot",
+        "Enhanced RAG capabilities with SharePoint"
       ] 
     },
     { 
-      phase: "Phase 3 - Add-ons / Reporting", 
-      duration: "15 days", 
+      phase: "Phase 2B - Optimization & Reporting (Days 66-90)", 
+      duration: "25 days", 
       activities: [
-        "Confidence Score Refinement",
-        "Reporting"
+        "Performance monitoring implementation",
+        "System optimization",
+        "Confidence score refinement",
+        "Reporting dashboard development"
       ] 
     }
   ],
   n8nTimeline: [
     { 
-      phase: "Phase 1 - Foundational Development", 
-      duration: "50 days", 
+      phase: "Phase 1A - Backend Infrastructure (Days 1-15)", 
+      duration: "15 days", 
       activities: [
-        "Export and analyze historical ticket data",
-        "Build knowledge base from historical ticket data",
-        "Implement email-based workflow automation using N8N",
-        "Integration with existing systems",
-        "Training session for the development team"
+        "Set up Azure VPS environment (managed by Umbral)",
+        "Configure N8N instance for heavy lifting tasks",
+        "Establish secure database connections",
+        "Set up monitoring tools (invisible to end users)"
       ] 
     },
     { 
-      phase: "Phase 2 - Advanced Automation", 
+      phase: "Phase 1B - Microsoft Integration (Days 16-35)", 
+      duration: "20 days", 
+      activities: [
+        "Connect N8N with Microsoft Teams for seamless user experience",
+        "Implement SharePoint integration for document storage",
+        "Configure Copilot as user-facing interface and router",
+        "Ensure all technical complexity is hidden from HG Fenton team"
+      ] 
+    },
+    { 
+      phase: "Phase 1C - Workflow Automation (Days 36-50)", 
+      duration: "15 days", 
+      activities: [
+        "Build email processing workflows (managed by Umbral)",
+        "Implement existing systems integration",
+        "Develop user training for Microsoft interface only",
+        "Initial deployment with Microsoft-focused user experience"
+      ] 
+    },
+    { 
+      phase: "Phase 2 - Advanced Features (Days 51-90)", 
       duration: "40 days", 
       activities: [
-        "Direct FreshService API integration",
-        "Real-time ticket processing and updates",
-        "Enhanced automation capabilities",
-        "Advanced monitoring and optimization tools",
-        "Continuous improvement framework"
+        "Enhance FreshService integration (technical aspects handled by Umbral)",
+        "Implement real-time ticket processing via familiar Microsoft interface",
+        "Optimize backend performance (invisible to end users)",
+        "Develop reporting dashboards in Microsoft Power BI",
+        "Continuous improvement with minimal disruption to users"
       ] 
     }
   ],
@@ -83,7 +109,7 @@ const slideData = {
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card className="w-full">
           <CardContent className="p-6">
-            <h3 class="text-xl font-semibold mb-4">Microsoft Stack Timeline <span class="text-sm font-normal text-muted-foreground">(90 days total)</span></h3>
+            <h3 class="text-xl font-semibold mb-4">Microsoft-Only Approach <span class="text-sm font-normal text-muted-foreground">(90 days total)</span></h3>
             <div class="space-y-4">
               {slideData.msStackTimeline.map((phase) => (
                 <div class="border-l-4 border-blue-500 pl-4 py-2">
@@ -101,7 +127,7 @@ const slideData = {
         
         <Card className="w-full">
           <CardContent className="p-6">
-            <h3 class="text-xl font-semibold mb-4">N8N Solution Timeline <span class="text-sm font-normal text-muted-foreground">(90 days total)</span></h3>
+            <h3 class="text-xl font-semibold mb-4">Hybrid Microsoft + N8N Approach <span class="text-sm font-normal text-muted-foreground">(90 days total)</span></h3>
             <div class="space-y-4">
               {slideData.n8nTimeline.map((phase) => (
                 <div class="border-l-4 border-purple-500 pl-4 py-2">
@@ -121,14 +147,16 @@ const slideData = {
     
     <AnimatedContent client:load delay={0.4}>
       <div class="mt-6 p-4 bg-muted rounded-lg">
-        <h3 class="font-semibold mb-2">Timeline Comparison</h3>
-        <p>
-          Both solutions are designed to be completed within a 90-day timeline. The Microsoft Stack implementation 
-          includes three distinct phases, with the majority of time allocated to foundational development. 
-          The N8N solution is structured in two phases with more time dedicated to advanced automation features. 
-          While the overall timeline is identical, the N8N solution offers greater flexibility in resource allocation 
-          and potentially earlier access to advanced features.
+        <h3 class="font-semibold mb-2">Key Advantages of Hybrid Approach</h3>
+        <p class="mb-3">
+          The hybrid approach leverages the best of both worlds: Microsoft's familiar user interface with N8N's powerful backend automation.
         </p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li><strong>Familiar User Experience:</strong> HG Fenton team interacts exclusively with Microsoft Teams and Copilot</li>
+          <li><strong>Technical Complexity Hidden:</strong> All N8N workflows and database operations are managed by Umbral</li>
+          <li><strong>Microsoft Ecosystem Integration:</strong> Seamless connection with SharePoint, Teams, and other Microsoft tools</li>
+          <li><strong>Enhanced Automation:</strong> N8N handles heavy lifting tasks behind the scenes without user involvement</li>
+        </ul>
       </div>
     </AnimatedContent>
   </div>

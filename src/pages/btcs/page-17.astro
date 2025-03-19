@@ -9,23 +9,24 @@ const slideData = {
   pageNumber: 17,
   totalPages: 19,
   msStackAdvantages: [
-    "Tight integration with existing Microsoft ecosystem",
-    "Low-code development reduces implementation time",
-    "Managed updates and centralized administration",
-    "Familiar interface for Microsoft-centric organizations"
+    "Familiar Microsoft ecosystem for end users",
+    "Low-code development for IT team",
+    "Managed updates through Microsoft",
+    "Single vendor relationship"
   ],
-  n8nAdvantages: [
-    "Greater flexibility for custom integrations and workflows",
-    "Advanced webhook processing and data transformations",
-    "Lower long-term costs, especially with many users",
-    "Open-source extensibility and custom development options"
+  hybridAdvantages: [
+    "Microsoft interface for users (Teams, Copilot, SharePoint)",
+    "N8N handles technical implementation (managed by Umbral)",
+    "No technical burden on HG Fenton team",
+    "Lower costs with same Microsoft compatibility",
+    "More powerful automation capabilities"
   ],
-  recommendation: "Based on the specific requirements for FreshServices ticket management, the N8N-based solution offers superior flexibility, integration capabilities, and long-term cost benefits. For organizations with complex workflow needs and a desire for customization, the N8N approach provides significant advantages.",
+  recommendation: "We recommend the hybrid approach that leverages Microsoft's familiar user interface while using N8N for technical implementation and heavy lifting tasks. This gives HG Fenton the best of both worlds: the Microsoft ecosystem your team already knows, with powerful automation that happens behind the scenes without requiring your team to manage it.",
   nextSteps: [
     "Conduct a detailed requirements workshop",
-    "Develop proof-of-concept for critical workflows",
-    "Finalize infrastructure and hosting decisions",
-    "Create implementation roadmap with phased approach"
+    "Map existing Microsoft tools to hybrid solution",
+    "Develop proof-of-concept with Microsoft interface",
+    "Create implementation roadmap with minimal disruption to users"
   ],
   prevPage: "/btcs/page-15",
   nextPage: "/btcs/page-17"
@@ -44,23 +45,33 @@ const slideData = {
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <Card className="w-full">
           <CardContent className="p-6">
-            <h3 class="text-xl font-semibold mb-4">Microsoft Stack Advantages</h3>
+            <h3 class="text-xl font-semibold mb-4">Microsoft-Only Approach</h3>
             <ul class="space-y-2 list-disc pl-5">
               {slideData.msStackAdvantages.map((advantage) => (
                 <li>{advantage}</li>
               ))}
             </ul>
+            <div class="mt-4 p-3 bg-muted rounded-lg">
+              <p class="text-sm text-muted-foreground">
+                <strong>Key Challenge:</strong> Your team must manage all technical aspects
+              </p>
+            </div>
           </CardContent>
         </Card>
         
         <Card className="w-full">
           <CardContent className="p-6">
-            <h3 class="text-xl font-semibold mb-4">N8N Solution Advantages</h3>
+            <h3 class="text-xl font-semibold mb-4">Hybrid Microsoft + N8N Approach</h3>
             <ul class="space-y-2 list-disc pl-5">
-              {slideData.n8nAdvantages.map((advantage) => (
+              {slideData.hybridAdvantages.map((advantage) => (
                 <li>{advantage}</li>
               ))}
             </ul>
+            <div class="mt-4 p-3 bg-muted rounded-lg">
+              <p class="text-sm text-muted-foreground">
+                <strong>Key Benefit:</strong> Technical complexity handled by Umbral
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -78,6 +89,15 @@ const slideData = {
               <li>{step}</li>
             ))}
           </ol>
+          
+          <div class="mt-6 p-4 bg-muted rounded-lg">
+            <h4 class="font-semibold mb-2">User Experience Focus</h4>
+            <p>
+              With the hybrid approach, your team will continue using familiar Microsoft tools like Teams and Copilot. 
+              All the technical implementation, ingestion, and automation workflows will be handled by N8N behind the scenes, 
+              managed by Umbral. This means you get powerful automation without the technical burden.
+            </p>
+          </div>
         </CardContent>
       </Card>
     </AnimatedContent>
