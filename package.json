@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.2.4",
     "@astrojs/mdx": "^4.2.1",
     "@astrojs/react": "^4.2.1",
     "@radix-ui/react-navigation-menu": "^1.2.5",
