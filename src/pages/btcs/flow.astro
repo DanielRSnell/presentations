@@ -1,0 +1,43 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+import FlowDiagram from '../../components/FlowDiagram.jsx';
+
+// Slide content data
+const slideData = {
+  title: "Architecture Flow Diagrams",
+  subtitle: "Visual Comparison of Different Build Approaches",
+  pageNumber: 20, // Update this based on your actual slide numbering
+  totalPages: 20, // Update this based on your total slides
+  prevPage: "/btcs/page-19" // Update this to link to the previous page
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  subtitle={slideData.subtitle}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="flex flex-col items-center justify-center space-y-6">
+    <AnimatedContent client:load>
+      <h1 class="text-3xl font-bold mb-4">{slideData.title}</h1>
+      <p class="text-xl mb-8 text-muted-foreground">{slideData.subtitle}</p>
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.3}>
+      <Card className="w-full p-4 h-[500px]">
+        <CardContent className="p-0 h-full">
+          <FlowDiagram client:only="react" />
+        </CardContent>
+      </Card>
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.6}>
+      <p class="text-sm text-muted-foreground mt-4">
+        Interactive diagram showing the relationships between different components in each architecture.
+      </p>
+    </AnimatedContent>
+  </div>
+</SlideLayout>
