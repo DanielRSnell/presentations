@@ -1,0 +1,356 @@
+{
+  "microsoft": {
+    "nodes": [
+      {
+        "id": "ms-1",
+        "type": "client",
+        "position": { "x": 50, "y": 200 },
+        "data": { 
+          "label": "FreshService", 
+          "description": "Ticket Management System",
+          "domain": "freshservice.com",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "ms-2",
+        "type": "service",
+        "position": { "x": 300, "y": 200 },
+        "data": { 
+          "label": "Microsoft Power Automate", 
+          "description": "Workflow Automation",
+          "domain": "microsoft.com",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "ms-3",
+        "type": "service",
+        "position": { "x": 550, "y": 100 },
+        "data": { 
+          "label": "Azure Functions", 
+          "description": "Serverless Computing",
+          "domain": "azure.com",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "ms-4",
+        "type": "database",
+        "position": { "x": 550, "y": 300 },
+        "data": { 
+          "label": "Azure SQL", 
+          "description": "Database Storage",
+          "domain": "azure.com",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "ms-5",
+        "type": "service",
+        "position": { "x": 800, "y": 200 },
+        "data": { 
+          "label": "Microsoft CoPilot", 
+          "description": "AI Assistant Integration",
+          "domain": "microsoft.com",
+          "direction": "horizontal"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "ms-e1-2",
+        "source": "ms-1",
+        "target": "ms-2",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Tickets",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ms-e2-3",
+        "source": "ms-2",
+        "target": "ms-3",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Triggers",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ms-e2-4",
+        "source": "ms-2",
+        "target": "ms-4",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Stores Data",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ms-e3-5",
+        "source": "ms-3",
+        "target": "ms-5",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Processes",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ms-e4-5",
+        "source": "ms-4",
+        "target": "ms-5",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Provides Context",
+        "type": "smoothstep"
+      }
+    ]
+  },
+  "n8n": {
+    "nodes": [
+      {
+        "id": "n8n-1",
+        "type": "client",
+        "position": { "x": 50, "y": 200 },
+        "data": { 
+          "label": "FreshService", 
+          "description": "Ticket Management System",
+          "domain": "freshservice.com",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "n8n-2",
+        "type": "service",
+        "position": { "x": 300, "y": 200 },
+        "data": { 
+          "label": "N8N", 
+          "description": "Workflow Automation Platform",
+          "domain": "n8n.io",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "n8n-3",
+        "type": "service",
+        "position": { "x": 550, "y": 100 },
+        "data": { 
+          "label": "Node.js API", 
+          "description": "Custom API Services",
+          "domain": "nodejs.org",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "n8n-4",
+        "type": "database",
+        "position": { "x": 550, "y": 300 },
+        "data": { 
+          "label": "PostgreSQL", 
+          "description": "Database Storage",
+          "domain": "postgresql.org",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "n8n-5",
+        "type": "service",
+        "position": { "x": 800, "y": 200 },
+        "data": { 
+          "label": "XML to JSON Converter", 
+          "description": "Data Transformation Service",
+          "domain": "github.com",
+          "direction": "horizontal"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "n8n-e1-2",
+        "source": "n8n-1",
+        "target": "n8n-2",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Webhook",
+        "type": "smoothstep"
+      },
+      {
+        "id": "n8n-e2-3",
+        "source": "n8n-2",
+        "target": "n8n-3",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "API Calls",
+        "type": "smoothstep"
+      },
+      {
+        "id": "n8n-e2-4",
+        "source": "n8n-2",
+        "target": "n8n-4",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Stores Data",
+        "type": "smoothstep"
+      },
+      {
+        "id": "n8n-e3-5",
+        "source": "n8n-3",
+        "target": "n8n-5",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Processes XML",
+        "type": "smoothstep"
+      },
+      {
+        "id": "n8n-e5-4",
+        "source": "n8n-5",
+        "target": "n8n-4",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Stores JSON",
+        "type": "smoothstep"
+      }
+    ]
+  },
+  "ai-powered": {
+    "nodes": [
+      {
+        "id": "ai-1",
+        "type": "client",
+        "position": { "x": 50, "y": 200 },
+        "data": { 
+          "label": "Web Application", 
+          "description": "User Interface",
+          "domain": "example.com",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "ai-2",
+        "type": "api",
+        "position": { "x": 300, "y": 200 },
+        "data": { 
+          "label": "API Gateway", 
+          "description": "Request Routing",
+          "domain": "aws.amazon.com",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "ai-3",
+        "type": "service",
+        "position": { "x": 550, "y": 100 },
+        "data": { 
+          "label": "Authentication Service", 
+          "description": "User Authentication",
+          "domain": "auth0.com",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "ai-4",
+        "type": "ai",
+        "position": { "x": 550, "y": 300 },
+        "data": { 
+          "label": "AI Model", 
+          "description": "Machine Learning Service",
+          "domain": "openai.com",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "ai-5",
+        "type": "database",
+        "position": { "x": 800, "y": 200 },
+        "data": { 
+          "label": "Vector Database", 
+          "description": "Embeddings Storage",
+          "domain": "pinecone.io",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "ai-6",
+        "type": "integration",
+        "position": { "x": 800, "y": 300 },
+        "data": { 
+          "label": "External API Connector", 
+          "description": "Third-party Integration",
+          "domain": "zapier.com",
+          "direction": "horizontal"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "ai-e1-2",
+        "source": "ai-1",
+        "target": "ai-2",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "User Requests",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ai-e2-3",
+        "source": "ai-2",
+        "target": "ai-3",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Verify User",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ai-e2-4",
+        "source": "ai-2",
+        "target": "ai-4",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Process Query",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ai-e4-5",
+        "source": "ai-4",
+        "target": "ai-5",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Store Vectors",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ai-e4-6",
+        "source": "ai-4",
+        "target": "ai-6",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "External Data",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ai-e6-5",
+        "source": "ai-6",
+        "target": "ai-5",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Cache Results",
+        "type": "smoothstep"
+      }
+    ]
+  }
+}

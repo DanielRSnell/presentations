@@ -1,0 +1,504 @@
+{
+  "microsoft": {
+    "nodes": [
+      {
+        "id": "ms-1",
+        "type": "client",
+        "position": { "x": 250, "y": 50 },
+        "data": { 
+          "label": "FreshService", 
+          "description": "Ticket Management System",
+          "cardType": "client"
+        }
+      },
+      {
+        "id": "ms-2",
+        "type": "service",
+        "position": { "x": 250, "y": 150 },
+        "data": { 
+          "label": "Microsoft Power Automate", 
+          "description": "Workflow Automation",
+          "cardType": "service"
+        }
+      },
+      {
+        "id": "ms-3",
+        "type": "service",
+        "position": { "x": 100, "y": 250 },
+        "data": { 
+          "label": "Azure Functions", 
+          "description": "Serverless Computing",
+          "cardType": "service"
+        }
+      },
+      {
+        "id": "ms-4",
+        "type": "database",
+        "position": { "x": 400, "y": 250 },
+        "data": { 
+          "label": "Azure SQL", 
+          "description": "Database Storage",
+          "cardType": "database"
+        }
+      },
+      {
+        "id": "ms-5",
+        "type": "service",
+        "position": { "x": 250, "y": 350 },
+        "data": { 
+          "label": "Microsoft CoPilot", 
+          "description": "AI Assistant Integration",
+          "cardType": "service"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "ms-e1-2",
+        "source": "ms-1",
+        "target": "ms-2",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "animated": true,
+        "label": "Tickets",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ms-e2-3",
+        "source": "ms-2",
+        "target": "ms-3",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "animated": true,
+        "label": "Triggers",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ms-e2-4",
+        "source": "ms-2",
+        "target": "ms-4",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "animated": true,
+        "label": "Stores Data",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ms-e3-5",
+        "source": "ms-3",
+        "target": "ms-5",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "animated": true,
+        "label": "Processes",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ms-e4-5",
+        "source": "ms-4",
+        "target": "ms-5",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "animated": true,
+        "label": "Provides Context",
+        "type": "smoothstep"
+      }
+    ]
+  },
+  "n8n": {
+    "nodes": [
+      {
+        "id": "n8n-1",
+        "type": "client",
+        "position": { "x": 250, "y": 50 },
+        "data": { 
+          "label": "FreshService", 
+          "description": "Ticket Management System",
+          "cardType": "client"
+        }
+      },
+      {
+        "id": "n8n-2",
+        "type": "service",
+        "position": { "x": 250, "y": 150 },
+        "data": { 
+          "label": "N8N", 
+          "description": "Workflow Automation Platform",
+          "cardType": "service"
+        }
+      },
+      {
+        "id": "n8n-3",
+        "type": "service",
+        "position": { "x": 100, "y": 250 },
+        "data": { 
+          "label": "Node.js API", 
+          "description": "Custom API Services",
+          "cardType": "service"
+        }
+      },
+      {
+        "id": "n8n-4",
+        "type": "database",
+        "position": { "x": 400, "y": 250 },
+        "data": { 
+          "label": "PostgreSQL", 
+          "description": "Database Storage",
+          "cardType": "database"
+        }
+      },
+      {
+        "id": "n8n-5",
+        "type": "service",
+        "position": { "x": 250, "y": 350 },
+        "data": { 
+          "label": "XML to JSON Converter", 
+          "description": "Data Transformation Service",
+          "cardType": "service"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "n8n-e1-2",
+        "source": "n8n-1",
+        "target": "n8n-2",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "animated": true,
+        "label": "Webhook",
+        "type": "smoothstep"
+      },
+      {
+        "id": "n8n-e2-3",
+        "source": "n8n-2",
+        "target": "n8n-3",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "animated": true,
+        "label": "API Calls",
+        "type": "smoothstep"
+      },
+      {
+        "id": "n8n-e2-4",
+        "source": "n8n-2",
+        "target": "n8n-4",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "animated": true,
+        "label": "Stores Data",
+        "type": "smoothstep"
+      },
+      {
+        "id": "n8n-e3-5",
+        "source": "n8n-3",
+        "target": "n8n-5",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "animated": true,
+        "label": "Processes XML",
+        "type": "smoothstep"
+      },
+      {
+        "id": "n8n-e5-4",
+        "source": "n8n-5",
+        "target": "n8n-4",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "animated": true,
+        "label": "Stores JSON",
+        "type": "smoothstep"
+      }
+    ]
+  },
+  "ai-powered": {
+    "nodes": [
+      {
+        "id": "ai-1",
+        "type": "client",
+        "position": { "x": 250, "y": 50 },
+        "data": { 
+          "label": "Web Application", 
+          "description": "User Interface",
+          "cardType": "client"
+        }
+      },
+      {
+        "id": "ai-2",
+        "type": "api",
+        "position": { "x": 250, "y": 150 },
+        "data": { 
+          "label": "API Gateway", 
+          "description": "Request Routing",
+          "cardType": "api"
+        }
+      },
+      {
+        "id": "ai-3",
+        "type": "service",
+        "position": { "x": 100, "y": 250 },
+        "data": { 
+          "label": "Authentication Service", 
+          "description": "User Authentication",
+          "cardType": "service"
+        }
+      },
+      {
+        "id": "ai-4",
+        "type": "ai",
+        "position": { "x": 400, "y": 250 },
+        "data": { 
+          "label": "AI Model", 
+          "description": "Machine Learning Service",
+          "cardType": "ai"
+        }
+      },
+      {
+        "id": "ai-5",
+        "type": "database",
+        "position": { "x": 250, "y": 350 },
+        "data": { 
+          "label": "Vector Database", 
+          "description": "Embeddings Storage",
+          "cardType": "database"
+        }
+      },
+      {
+        "id": "ai-6",
+        "type": "integration",
+        "position": { "x": 400, "y": 350 },
+        "data": { 
+          "label": "External API Connector", 
+          "description": "Third-party Integration",
+          "cardType": "integration"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "ai-e1-2",
+        "source": "ai-1",
+        "target": "ai-2",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "animated": true,
+        "label": "User Requests",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ai-e2-3",
+        "source": "ai-2",
+        "target": "ai-3",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "animated": true,
+        "label": "Verify User",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ai-e2-4",
+        "source": "ai-2",
+        "target": "ai-4",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "animated": true,
+        "label": "Process Query",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ai-e4-5",
+        "source": "ai-4",
+        "target": "ai-5",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "animated": true,
+        "label": "Store Vectors",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ai-e4-6",
+        "source": "ai-4",
+        "target": "ai-6",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "animated": true,
+        "label": "External Data",
+        "type": "smoothstep"
+      },
+      {
+        "id": "ai-e6-5",
+        "source": "ai-6",
+        "target": "ai-5",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "animated": true,
+        "label": "Cache Results",
+        "type": "smoothstep"
+      }
+    ]
+  },
+  "umbral-chat": {
+    "nodes": [
+      {
+        "id": "client-1",
+        "type": "client",
+        "position": { "x": 50, "y": 200 },
+        "data": { 
+          "label": "Website Integration", 
+          "description": "Client-side embed via script tag",
+          "domain": "example.com",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "component-1",
+        "type": "service",
+        "position": { "x": 300, "y": 200 },
+        "data": { 
+          "label": "React Web Component", 
+          "description": "Shadow DOM with isolated styles",
+          "domain": "reactjs.org",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "store-1",
+        "type": "service",
+        "position": { "x": 300, "y": 100 },
+        "data": { 
+          "label": "Zustand Store", 
+          "description": "State management",
+          "domain": "github.com",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "ui-1",
+        "type": "service",
+        "position": { "x": 550, "y": 200 },
+        "data": { 
+          "label": "UI Components", 
+          "description": "Tailwind v4 styled components",
+          "domain": "tailwindcss.com",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "backend-1",
+        "type": "integration",
+        "position": { "x": 800, "y": 200 },
+        "data": { 
+          "label": "N8N Backend", 
+          "description": "Workflow automation",
+          "domain": "n8n.io",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "api-1",
+        "type": "api",
+        "position": { "x": 800, "y": 100 },
+        "data": { 
+          "label": "REST API", 
+          "description": "N8N HTTP endpoints",
+          "domain": "swagger.io",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "db-1",
+        "type": "database",
+        "position": { "x": 1050, "y": 200 },
+        "data": { 
+          "label": "Conversation Storage", 
+          "description": "Persistence options",
+          "domain": "mongodb.com",
+          "direction": "horizontal"
+        }
+      },
+      {
+        "id": "ai-1",
+        "type": "ai",
+        "position": { "x": 1050, "y": 100 },
+        "data": { 
+          "label": "AI Integration", 
+          "description": "LLM services",
+          "domain": "openai.com",
+          "direction": "horizontal"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1-2",
+        "source": "client-1",
+        "target": "component-1",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Embed",
+        "type": "smoothstep"
+      },
+      {
+        "id": "e2-3",
+        "source": "component-1",
+        "target": "store-1",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "State",
+        "type": "smoothstep"
+      },
+      {
+        "id": "e2-4",
+        "source": "component-1",
+        "target": "ui-1",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Renders",
+        "type": "smoothstep"
+      },
+      {
+        "id": "e4-5",
+        "source": "ui-1",
+        "target": "backend-1",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "API Calls",
+        "type": "smoothstep"
+      },
+      {
+        "id": "e5-6",
+        "source": "backend-1",
+        "target": "api-1",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Exposes",
+        "type": "smoothstep"
+      },
+      {
+        "id": "e5-7",
+        "source": "backend-1",
+        "target": "db-1",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Stores",
+        "type": "smoothstep"
+      },
+      {
+        "id": "e5-8",
+        "source": "backend-1",
+        "target": "ai-1",
+        "sourceHandle": "right",
+        "targetHandle": "left",
+        "animated": true,
+        "label": "Processes",
+        "type": "smoothstep"
+      }
+    ]
+  }
+}
