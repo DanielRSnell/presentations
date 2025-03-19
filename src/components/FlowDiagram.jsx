@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { 
   ReactFlow, 
   Background, 
@@ -6,7 +6,8 @@ import {
   MiniMap,
   Panel,
   useNodesState,
-  useEdgesState
+  useEdgesState,
+  Handle
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 
@@ -14,18 +15,24 @@ import '@xyflow/react/dist/style.css';
 const nodeTypes = {
   service: (props) => (
     <div className="p-3 rounded-md shadow-md bg-white border-2 border-blue-500 min-w-40">
+      <Handle type="target" position="top" id="top" />
+      <Handle type="source" position="bottom" id="bottom" />
       <div className="font-bold text-blue-700">{props.data.label}</div>
       {props.data.description && <div className="text-xs mt-1 text-gray-600">{props.data.description}</div>}
     </div>
   ),
   database: (props) => (
     <div className="p-3 rounded-md shadow-md bg-white border-2 border-green-500 min-w-40">
+      <Handle type="target" position="top" id="top" />
+      <Handle type="source" position="bottom" id="bottom" />
       <div className="font-bold text-green-700">{props.data.label}</div>
       {props.data.description && <div className="text-xs mt-1 text-gray-600">{props.data.description}</div>}
     </div>
   ),
   client: (props) => (
     <div className="p-3 rounded-md shadow-md bg-white border-2 border-purple-500 min-w-40">
+      <Handle type="target" position="top" id="top" />
+      <Handle type="source" position="bottom" id="bottom" />
       <div className="font-bold text-purple-700">{props.data.label}</div>
       {props.data.description && <div className="text-xs mt-1 text-gray-600">{props.data.description}</div>}
     </div>
@@ -72,6 +79,8 @@ const initialMicrosoftEdges = [
     id: 'ms-e1-2',
     source: 'ms-1',
     target: 'ms-2',
+    sourceHandle: 'bottom',
+    targetHandle: 'top',
     animated: true,
     label: 'Tickets',
     type: 'smoothstep'
@@ -80,6 +89,8 @@ const initialMicrosoftEdges = [
     id: 'ms-e2-3',
     source: 'ms-2',
     target: 'ms-3',
+    sourceHandle: 'bottom',
+    targetHandle: 'top',
     animated: true,
     label: 'Triggers',
     type: 'smoothstep'
@@ -88,6 +99,8 @@ const initialMicrosoftEdges = [
     id: 'ms-e2-4',
     source: 'ms-2',
     target: 'ms-4',
+    sourceHandle: 'bottom',
+    targetHandle: 'top',
     animated: true,
     label: 'Stores Data',
     type: 'smoothstep'
@@ -96,6 +109,8 @@ const initialMicrosoftEdges = [
     id: 'ms-e3-5',
     source: 'ms-3',
     target: 'ms-5',
+    sourceHandle: 'bottom',
+    targetHandle: 'top',
     animated: true,
     label: 'Processes',
     type: 'smoothstep'
@@ -104,6 +119,8 @@ const initialMicrosoftEdges = [
     id: 'ms-e4-5',
     source: 'ms-4',
     target: 'ms-5',
+    sourceHandle: 'bottom',
+    targetHandle: 'top',
     animated: true,
     label: 'Provides Context',
     type: 'smoothstep'
@@ -150,6 +167,8 @@ const initialN8NEdges = [
     id: 'n8n-e1-2',
     source: 'n8n-1',
     target: 'n8n-2',
+    sourceHandle: 'bottom',
+    targetHandle: 'top',
     animated: true,
     label: 'Webhook',
     type: 'smoothstep'
@@ -158,6 +177,8 @@ const initialN8NEdges = [
     id: 'n8n-e2-3',
     source: 'n8n-2',
     target: 'n8n-3',
+    sourceHandle: 'bottom',
+    targetHandle: 'top',
     animated: true,
     label: 'API Calls',
     type: 'smoothstep'
@@ -166,6 +187,8 @@ const initialN8NEdges = [
     id: 'n8n-e2-4',
     source: 'n8n-2',
     target: 'n8n-4',
+    sourceHandle: 'bottom',
+    targetHandle: 'top',
     animated: true,
     label: 'Stores Data',
     type: 'smoothstep'
@@ -174,6 +197,8 @@ const initialN8NEdges = [
     id: 'n8n-e3-5',
     source: 'n8n-3',
     target: 'n8n-5',
+    sourceHandle: 'bottom',
+    targetHandle: 'top',
     animated: true,
     label: 'Processes XML',
     type: 'smoothstep'
@@ -182,6 +207,8 @@ const initialN8NEdges = [
     id: 'n8n-e5-4',
     source: 'n8n-5',
     target: 'n8n-4',
+    sourceHandle: 'bottom',
+    targetHandle: 'top',
     animated: true,
     label: 'Stores JSON',
     type: 'smoothstep'
@@ -190,6 +217,7 @@ const initialN8NEdges = [
 
 // Flow Diagram Component
 const FlowDiagram = () => {
+  const flowRef = useRef(null);
   // State to toggle between different flow diagrams
   const [flowType, setFlowType] = useState('microsoft');
   
@@ -209,8 +237,30 @@ const FlowDiagram = () => {
     setEdges(type === 'microsoft' ? initialMicrosoftEdges : initialN8NEdges);
   }, [setNodes, setEdges]);
 
+  // Ensure the component is properly sized
+  useEffect(() => {
+    // Small delay to ensure the DOM is fully rendered
+    const timer = setTimeout(() => {
+      if (flowRef.current) {
+        // Force a window resize event to make React Flow recalculate dimensions
+        window.dispatchEvent(new Event('resize'));
+      }
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div style={{ width: '100%', height: '100%' }}>
+    <div 
+      ref={flowRef}
+      style={{ 
+        width: '88rem', 
+        height: '450px', 
+        border: '1px solid #ddd',
+        borderRadius: '8px',
+        overflow: 'hidden'
+      }}
+    >
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -218,6 +268,10 @@ const FlowDiagram = () => {
         onEdgesChange={onEdgesChange}
         nodeTypes={nodeTypes}
         fitView
+        style={{ 
+          width: '100%', 
+          height: '100%'
+        }}
       >
         <Controls />
         <MiniMap />
