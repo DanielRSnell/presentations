@@ -1,0 +1,64 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+import ComparisonTable from '../../components/ComparisonTable';
+
+// Slide content data
+const slideData = {
+  title: "User Experience & Adoption",
+  pageNumber: 12,
+  totalPages: 19,
+  comparisonItems: {
+    "User Interface": {
+      msStack: ["Familiar Microsoft interfaces", "Power Apps mobile experience", "Microsoft design language"],
+      n8nStack: ["NocoDB for prompt management", "Custom UI options", "Flexible design implementation"]
+    },
+    "Access Control": {
+      msStack: ["Microsoft identity integration", "Role-based permissions", "Standard security groups"],
+      n8nStack: ["Role-based access control", "Custom permission models", "Flexible authentication options"]
+    },
+    "Mobile Experience": {
+      msStack: ["Native Power Apps mobile", "Microsoft mobile optimization", "Integrated mobile experience"],
+      n8nStack: ["Responsive web design", "Progressive web app options", "Custom mobile optimizations"]
+    },
+    "Training Requirements": {
+      msStack: ["Microsoft training resources", "Familiar to Microsoft users", "Standard learning curve"],
+      n8nStack: ["Custom training materials", "Potentially steeper learning curve", "Tailored onboarding process"]
+    }
+  },
+  prevPage: "/btcs/page-10a",
+  nextPage: "/btcs/page-12"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="space-y-8">
+    <AnimatedContent client:load>
+      <h1 class="text-4xl font-bold mb-6">{slideData.title}</h1>
+      
+      <ComparisonTable 
+        client:load
+        title="User Experience & Adoption"
+        items={slideData.comparisonItems}
+      />
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.4}>
+      <div class="mt-6 p-4 bg-muted rounded-lg">
+        <h3 class="font-semibold mb-2">Adoption Considerations</h3>
+        <p>
+          The Microsoft Stack offers a familiar experience for organizations already using Microsoft products,
+          potentially reducing training requirements. The N8N approach provides more flexibility in UI design
+          and user experience but may require more comprehensive training. Both solutions can deliver
+          excellent user experiences with proper implementation, but organizations should consider their
+          existing technology ecosystem and user familiarity when making a decision.
+        </p>
+      </div>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

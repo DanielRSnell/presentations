@@ -1,0 +1,82 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+
+// Slide content data
+const slideData = {
+  title: "Q&A",
+  pageNumber: 19,
+  totalPages: 19,
+  contactInfo: {
+    name: "Your Presenter",
+    email: "presenter@company.com",
+    phone: "+1 (555) 123-4567"
+  },
+  resources: [
+    {
+      title: "N8N Documentation",
+      url: "https://docs.n8n.io/"
+    },
+    {
+      title: "Microsoft Power Platform",
+      url: "https://powerplatform.microsoft.com/"
+    },
+    {
+      title: "FreshServices API Documentation",
+      url: "https://api.freshservice.com/"
+    }
+  ],
+  prevPage: "/btcs/page-18"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="space-y-8">
+    <AnimatedContent client:load>
+      <h1 class="text-4xl font-bold mb-6">{slideData.title}</h1>
+      
+      <div class="flex flex-col items-center justify-center text-center mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Thank You!</h2>
+        <p class="text-xl mb-8">Questions or comments?</p>
+        
+        <div class="w-24 h-24 bg-gray-200 rounded-full mb-4 flex items-center justify-center">
+          <span class="text-gray-500">Photo</span>
+        </div>
+        
+        <h3 class="text-xl font-medium">{slideData.contactInfo.name}</h3>
+        <p class="text-muted-foreground">{slideData.contactInfo.email}</p>
+        <p class="text-muted-foreground">{slideData.contactInfo.phone}</p>
+      </div>
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.3}>
+      <Card className="w-full max-w-2xl mx-auto">
+        <CardContent className="p-6">
+          <h3 class="text-xl font-semibold mb-4">Additional Resources</h3>
+          <ul class="space-y-2">
+            {slideData.resources.map((resource) => (
+              <li>
+                <a href={resource.url} class="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+                  {resource.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.6}>
+      <div class="text-center mt-8">
+        <a href="/btcs/" class="text-primary hover:underline">
+          Return to Title Slide
+        </a>
+      </div>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

@@ -1,0 +1,55 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+
+// Slide content data
+const slideData = {
+  title: "Agent Architecture Comparison",
+  subtitle: "Microsoft CoPilot Stack vs. N8N-Based Solution",
+  tagline: "Enhancing FreshServices Integration with Modern Automation Solutions",
+  pageNumber: 1,
+  totalPages: 19,
+  date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+  nextPage: "/btcs/page-2",
+  nextPageText: "Start Presentation →"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  subtitle={slideData.subtitle}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="flex flex-col items-center justify-center space-y-8 text-center">
+    <AnimatedContent client:load>
+      <h1 class="text-5xl font-bold">{slideData.title}</h1>
+      <p class="text-2xl mt-4">{slideData.subtitle}</p>
+      <p class="text-xl mt-2 text-muted-foreground">{slideData.tagline}</p>
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.3}>
+      <Card className="mt-8 max-w-md mx-auto">
+        <CardContent className="p-6">
+          <div class="flex flex-col items-center">
+            <img 
+              src="/images/client.jpeg" 
+              alt="Client Logo" 
+              class="w-32 h-32 object-cover rounded-full mb-4"
+            />
+            <p class="text-muted-foreground">{slideData.date}</p>
+          </div>
+        </CardContent>
+      </Card>
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.6}>
+      <div class="mt-12">
+        <a href={slideData.nextPage} class="text-primary hover:underline">
+          {slideData.nextPageText}
+        </a>
+      </div>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

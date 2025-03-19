@@ -1,0 +1,64 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+import ComparisonTable from '../../components/ComparisonTable';
+
+// Slide content data
+const slideData = {
+  title: "Scalability Considerations",
+  pageNumber: 15,
+  totalPages: 19,
+  comparisonItems: {
+    "Service Limits": {
+      msStack: ["Power Platform service limits", "Dataverse capacity constraints", "Microsoft-defined thresholds"],
+      n8nStack: ["Azure infrastructure scaling", "Database performance tuning", "Custom scaling architecture"]
+    },
+    "Performance": {
+      msStack: ["Microsoft-managed performance", "Limited optimization options", "Standard scaling tiers"],
+      n8nStack: ["Custom performance optimization", "Database query optimization", "Infrastructure-level tuning"]
+    },
+    "Scaling Costs": {
+      msStack: ["Tier-based pricing model", "Per-user cost increases", "Additional capacity fees"],
+      n8nStack: ["Resource-based scaling costs", "Predictable infrastructure scaling", "Optimized resource allocation"]
+    },
+    "High Volume Processing": {
+      msStack: ["Flow run limitations", "Connector throttling concerns", "Limited parallel processing"],
+      n8nStack: ["Horizontal scaling options", "Webhook handling at scale", "Queue-based processing"]
+    }
+  },
+  prevPage: "/btcs/page-13",
+  nextPage: "/btcs/page-15"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="space-y-8">
+    <AnimatedContent client:load>
+      <h1 class="text-4xl font-bold mb-6">{slideData.title}</h1>
+      
+      <ComparisonTable 
+        client:load
+        title="Scalability Considerations"
+        items={slideData.comparisonItems}
+      />
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.4}>
+      <div class="mt-6 p-4 bg-muted rounded-lg">
+        <h3 class="font-semibold mb-2">Scaling for Growth</h3>
+        <p>
+          The N8N approach offers more flexibility for scaling high-volume ticket processing with 
+          custom infrastructure optimizations and horizontal scaling options. The Microsoft Stack 
+          provides a more managed approach but may face limitations with service quotas and connector 
+          throttling at higher volumes. Organizations expecting significant growth in ticket volume 
+          should carefully evaluate the scaling capabilities and associated costs of both approaches.
+        </p>
+      </div>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

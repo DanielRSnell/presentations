@@ -1,0 +1,58 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+
+// Slide content data
+const slideData = {
+  title: "Executive Summary",
+  pageNumber: 2,
+  totalPages: 19,
+  keyPoints: [
+    "Key business challenge: Building flexible, scalable agents for FreshServices ticket management",
+    "Two potential architectures: Microsoft-native vs. Hybrid N8N approach",
+    "Highlights of key differences in flexibility, maintenance, and total cost"
+  ],
+  prevPage: "/btcs/",
+  nextPage: "/btcs/page-3"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="space-y-8">
+    <AnimatedContent client:load>
+      <h1 class="text-4xl font-bold mb-6">{slideData.title}</h1>
+      
+      <Card className="w-full">
+        <CardContent className="p-6">
+          <ul class="space-y-4">
+            {slideData.keyPoints.map((point, index) => (
+              <li class="flex items-start">
+                <span class="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5">
+                  {index + 1}
+                </span>
+                <p class="text-lg">{point}</p>
+              </li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.4}>
+      <div class="mt-8 p-4 bg-muted rounded-lg">
+        <h3 class="font-semibold mb-2">Summary</h3>
+        <p>
+          This presentation compares two architectural approaches for enhancing FreshServices ticket management:
+          a Microsoft-native solution using the CoPilot Stack and a hybrid approach leveraging N8N workflows.
+          We'll analyze the trade-offs in terms of development flexibility, integration capabilities, 
+          maintenance requirements, and total cost of ownership.
+        </p>
+      </div>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

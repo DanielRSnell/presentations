@@ -1,0 +1,65 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+import ComparisonTable from '../../components/ComparisonTable';
+
+// Slide content data
+const slideData = {
+  title: "Risk Assessment",
+  pageNumber: 16,
+  totalPages: 19,
+  comparisonItems: {
+    "Vendor Dependency": {
+      msStack: ["Microsoft vendor lock-in", "Dependency on Microsoft roadmap", "Limited alternatives"],
+      n8nStack: ["Open-source sustainability", "Multiple component options", "Reduced vendor lock-in"]
+    },
+    "Platform Changes": {
+      msStack: ["Microsoft-controlled updates", "Potential breaking changes", "Limited control over timing"],
+      n8nStack: ["Control over update timing", "Version pinning options", "Managed upgrade path"]
+    },
+    "Licensing Changes": {
+      msStack: ["Microsoft licensing model changes", "Potential cost increases", "Limited negotiation leverage"],
+      n8nStack: ["Open-source licensing stability", "Azure infrastructure pricing", "Multiple hosting options"]
+    },
+    "Expertise Requirements": {
+      msStack: ["Microsoft-certified developers", "Common skill set", "Widely available resources"],
+      n8nStack: ["JavaScript/Node.js expertise", "DevOps knowledge", "Potentially specialized skills"]
+    }
+  },
+  prevPage: "/btcs/page-14",
+  nextPage: "/btcs/page-16"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="space-y-8">
+    <AnimatedContent client:load>
+      <h1 class="text-4xl font-bold mb-6">{slideData.title}</h1>
+      
+      <ComparisonTable 
+        client:load
+        title="Risk Assessment"
+        items={slideData.comparisonItems}
+      />
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.4}>
+      <div class="mt-6 p-4 bg-muted rounded-lg">
+        <h3 class="font-semibold mb-2">Risk Mitigation Strategies</h3>
+        <p>
+          For the Microsoft Stack, organizations should maintain awareness of Microsoft's roadmap and 
+          licensing changes, while budgeting for potential cost increases. For the N8N approach, 
+          organizations should invest in proper documentation, knowledge transfer, and potentially 
+          maintain support contracts for critical components. Both approaches have different risk 
+          profiles that should be evaluated against the organization's risk tolerance and strategic 
+          technology direction.
+        </p>
+      </div>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

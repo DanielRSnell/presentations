@@ -1,0 +1,63 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+import ComparisonTable from '../../components/ComparisonTable';
+
+// Slide content data
+const slideData = {
+  title: "Integration Capabilities",
+  pageNumber: 7,
+  totalPages: 19,
+  comparisonItems: {
+    "Native Integrations": {
+      msStack: ["Microsoft product integrations", "Power Automate connectors", "Microsoft Graph API"],
+      n8nStack: ["300+ pre-built integrations", "Custom API integrations", "Database connectors"]
+    },
+    "API Capabilities": {
+      msStack: ["Limited API customization", "Basic authentication methods", "Connector-based approach"],
+      n8nStack: ["Advanced API configuration", "Multiple authentication methods", "Custom request handling"]
+    },
+    "Data Transformation": {
+      msStack: ["Basic data mapping", "Limited transformation options", "Template-based approach"],
+      n8nStack: ["Custom JavaScript transformations", "Complex data mapping", "Advanced filtering options"]
+    },
+    "Database Operations": {
+      msStack: ["Dataverse as primary storage", "Limited external DB operations", "Microsoft-focused"],
+      n8nStack: ["Direct database operations", "SQL query execution", "Multiple database support"]
+    }
+  },
+  prevPage: "/btcs/page-6",
+  nextPage: "/btcs/page-8"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="space-y-8">
+    <AnimatedContent client:load>
+      <h1 class="text-4xl font-bold mb-6">{slideData.title}</h1>
+      
+      <ComparisonTable 
+        client:load
+        title="Integration Capabilities"
+        items={slideData.comparisonItems}
+      />
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.4}>
+      <div class="mt-6 p-4 bg-muted rounded-lg">
+        <h3 class="font-semibold mb-2">Integration Flexibility</h3>
+        <p>
+          The N8N approach excels in integration flexibility with its extensive library of pre-built 
+          connectors and ability to create custom integrations. While the Microsoft Stack offers 
+          seamless integration within its ecosystem, it may require premium connectors or custom 
+          development for certain third-party systems, potentially increasing costs and complexity.
+        </p>
+      </div>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

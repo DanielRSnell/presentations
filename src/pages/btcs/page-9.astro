@@ -1,0 +1,63 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+import ComparisonTable from '../../components/ComparisonTable';
+
+// Slide content data
+const slideData = {
+  title: "Maintenance & Governance",
+  pageNumber: 9,
+  totalPages: 19,
+  comparisonItems: {
+    "Updates & Maintenance": {
+      msStack: ["Microsoft-managed updates", "Automatic platform upgrades", "Managed infrastructure"],
+      n8nStack: ["Self-managed updates (Azure VPS)", "Control over upgrade timing", "Infrastructure management required"]
+    },
+    "Administration": {
+      msStack: ["Power Platform admin center", "Microsoft admin tools", "Centralized management"],
+      n8nStack: ["NocoDB admin interface", "Custom dashboards", "Business user-friendly controls"]
+    },
+    "Monitoring": {
+      msStack: ["Built-in monitoring", "Standard alerts", "Microsoft-defined metrics"],
+      n8nStack: ["Custom monitoring options", "Flexible alerting", "Tailored metrics and logging"]
+    },
+    "Compliance": {
+      msStack: ["Microsoft compliance features", "Standard security controls", "Built-in governance"],
+      n8nStack: ["Custom compliance implementation", "Flexible security controls", "Self-managed governance"]
+    }
+  },
+  prevPage: "/btcs/page-8",
+  nextPage: "/btcs/page-10"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="space-y-8">
+    <AnimatedContent client:load>
+      <h1 class="text-4xl font-bold mb-6">{slideData.title}</h1>
+      
+      <ComparisonTable 
+        client:load
+        title="Maintenance & Governance"
+        items={slideData.comparisonItems}
+      />
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.4}>
+      <div class="mt-6 p-4 bg-muted rounded-lg">
+        <h3 class="font-semibold mb-2">Maintenance Trade-offs</h3>
+        <p>
+          The Microsoft Stack offers a more managed approach with automatic updates and centralized administration,
+          reducing maintenance overhead but limiting control. The N8N approach requires more hands-on management
+          but provides greater flexibility in how and when updates are applied, along with custom monitoring
+          and governance options tailored to specific business needs.
+        </p>
+      </div>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

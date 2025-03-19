@@ -1,25 +1,51 @@
 ---
-import '../styles/global.css';
-// Component Imports
-import Button from '../components/Button.astro';
+import GeneralLayout from '../layouts/general.astro';
+import { Card } from '@/components/ui/card';
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+// Presentations data - easy to add new presentations here
+const presentations = [
+  {
+    id: 'btcs',
+    title: 'Agent Architecture Comparison',
+    subtitle: 'Microsoft CoPilot Stack vs N8N-Based Solution',
+    date: 'March 2025',
+    series: 'FreshServices Integration',
+    featuring: 'BTCS Group',
+  },
+  // Add new presentations here following the same structure
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
+<GeneralLayout content={{ title: 'Presentation Library' }}>
+  <div class="max-w-4xl mx-auto py-6 px-4">
+    <div class="text-center mb-8">
+      <h1 class="text-2xl font-bold">Presentation Library</h1>
+      <p class="text-sm text-muted-foreground">Select a presentation to view</p>
+    </div>
 
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
-</html>
+    <div class="border rounded-lg overflow-hidden">
+      {presentations.map((presentation, index) => (
+        <a 
+          href={`/${presentation.id}`} 
+          class:list={[
+            "block border-b last:border-b-0 hover:bg-gray-50 transition-colors",
+            "p-4"
+          ]}
+        >
+          <div class="text-xs text-muted-foreground">{presentation.date}</div>
+          <h2 class="text-xl font-bold mt-1">{presentation.title}</h2>
+          <p class="text-sm">{presentation.subtitle}</p>
+          
+          <div class="flex flex-wrap gap-x-4 mt-2 text-xs">
+            <span class="text-muted-foreground">Series: {presentation.series}</span>
+            <span>Featuring: {presentation.featuring}</span>
+          </div>
+          
+          <div class="mt-2">
+            <span class="text-sm font-medium">View Presentation →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</GeneralLayout>

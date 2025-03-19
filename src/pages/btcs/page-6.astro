@@ -1,0 +1,63 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+import ComparisonTable from '../../components/ComparisonTable';
+
+// Slide content data
+const slideData = {
+  title: "Development Flexibility Comparison",
+  pageNumber: 6,
+  totalPages: 19,
+  comparisonItems: {
+    "Development Approach": {
+      msStack: ["Low-code development", "Visual designers", "Limited custom code"],
+      n8nStack: ["Visual workflow editor", "Custom JavaScript nodes", "Full code control when needed"]
+    },
+    "Ecosystem Limitations": {
+      msStack: ["Microsoft ecosystem constraints", "Connector licensing considerations", "Limited third-party integrations"],
+      n8nStack: ["Open-source extensibility", "Custom node development", "Unlimited third-party integrations"]
+    },
+    "Deployment Options": {
+      msStack: ["Microsoft cloud only", "Limited self-hosting options", "Tied to Microsoft infrastructure"],
+      n8nStack: ["Flexible hosting (Azure VPS)", "Self-hosted or cloud options", "Infrastructure independence"]
+    },
+    "Data Pipeline Control": {
+      msStack: ["Limited data transformation", "Predefined connectors", "Basic error handling"],
+      n8nStack: ["Advanced data transformations", "Custom error handling", "Complex workflow branching"]
+    }
+  },
+  prevPage: "/btcs/page-5",
+  nextPage: "/btcs/page-7"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="space-y-8">
+    <AnimatedContent client:load>
+      <h1 class="text-4xl font-bold mb-6">{slideData.title}</h1>
+      
+      <ComparisonTable 
+        client:load
+        title="Development Flexibility"
+        items={slideData.comparisonItems}
+      />
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.4}>
+      <div class="mt-6 p-4 bg-muted rounded-lg">
+        <h3 class="font-semibold mb-2">Key Considerations</h3>
+        <p>
+          While the Microsoft Stack offers a low-code approach that can accelerate initial development,
+          the N8N solution provides greater flexibility for custom integrations and complex workflows.
+          Organizations with specific requirements beyond standard use cases may benefit from
+          the extensibility of the N8N approach.
+        </p>
+      </div>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

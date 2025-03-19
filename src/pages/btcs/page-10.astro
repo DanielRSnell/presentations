@@ -1,0 +1,145 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+import ComparisonTable from '../../components/ComparisonTable';
+import CostComparisonChart from '../../components/CostComparisonChart';
+
+// Slide content data
+const slideData = {
+  title: "Cost Analysis: Fixed & Per-Interaction",
+  pageNumber: 10,
+  totalPages: 19,
+  monthlyFixedCosts: {
+    n8n: {
+      infrastructure: "$76.00 (Azure VPS)",
+      backups: "$15.00",
+      total: "$91.00"
+    },
+    microsoft: {
+      infrastructure: "Included in licensing",
+      backups: "Included in licensing",
+      total: "$0.00 (absorbed in per-interaction costs)"
+    }
+  },
+  perInteractionCosts: {
+    n8n: {
+      copilotMessage: "$0.02 per message",
+      averageCostPerTicket: "$0.02 per ticket"
+    },
+    microsoft: {
+      copilotMessage: "$0.02 to $0.30 per message",
+      averageCostPerTicket: "$1.25 to $2.00 per ticket (5-8 interactions @ $0.25)"
+    }
+  },
+  chartData: [
+    {
+      name: "Monthly Fixed Cost",
+      n8n: 91,
+      microsoft: 0
+    },
+    {
+      name: "Per Ticket Cost",
+      n8n: 0.02,
+      microsoft: 1.5
+    },
+    {
+      name: "Cost per 100 Tickets",
+      n8n: 93,
+      microsoft: 150
+    },
+    {
+      name: "Cost per 1000 Tickets",
+      n8n: 111,
+      microsoft: 1500
+    }
+  ],
+  highlights: [
+    "The N8N solution requires a fixed infrastructure cost of $91/month regardless of ticket volume.",
+    "The N8N solution becomes increasingly cost-effective as ticket volume grows.",
+    "The fixed costs of the N8N solution are offset after processing approximately 73 tickets per month."
+  ],
+  prevPage: "/btcs/page-9",
+  nextPage: "/btcs/page-10a"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="space-y-8">
+    <AnimatedContent client:load>
+      <h1 class="text-3xl font-bold mb-8">{slideData.title}</h1>
+      
+      <div class="grid grid-cols-1 gap-8">
+        <Card className="w-full">
+          <CardContent className="p-8">
+            <h3 class="text-2xl font-semibold mb-6">Monthly Fixed Costs</h3>
+            <table class="w-full border-collapse text-lg">
+              <thead>
+                <tr class="border-b border-gray-300">
+                  <th class="text-left py-3 px-2">Component</th>
+                  <th class="text-left py-3 px-2">N8N Solution</th>
+                  <th class="text-left py-3 px-2">Microsoft Solution</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-200">
+                  <td class="py-3 px-2">Infrastructure</td>
+                  <td class="py-3 px-2">{slideData.monthlyFixedCosts.n8n.infrastructure}</td>
+                  <td class="py-3 px-2">{slideData.monthlyFixedCosts.microsoft.infrastructure}</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="py-3 px-2">Backups</td>
+                  <td class="py-3 px-2">{slideData.monthlyFixedCosts.n8n.backups}</td>
+                  <td class="py-3 px-2">{slideData.monthlyFixedCosts.microsoft.backups}</td>
+                </tr>
+                <tr class="font-bold">
+                  <td class="py-3 px-2">Total Fixed Costs</td>
+                  <td class="py-3 px-2">{slideData.monthlyFixedCosts.n8n.total}</td>
+                  <td class="py-3 px-2">{slideData.monthlyFixedCosts.microsoft.total}</td>
+                </tr>
+              </tbody>
+            </table>
+          </CardContent>
+        </Card>
+        
+        <Card className="w-full">
+          <CardContent className="p-8">
+            <h3 class="text-2xl font-semibold mb-6">Per-Interaction Costs</h3>
+            <table class="w-full border-collapse text-lg">
+              <thead>
+                <tr class="border-b border-gray-300">
+                  <th class="text-left py-3 px-2">Component</th>
+                  <th class="text-left py-3 px-2">N8N Solution</th>
+                  <th class="text-left py-3 px-2">Microsoft Solution</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-200">
+                  <td class="py-3 px-2">CoPilot Message</td>
+                  <td class="py-3 px-2">{slideData.perInteractionCosts.n8n.copilotMessage}</td>
+                  <td class="py-3 px-2">{slideData.perInteractionCosts.microsoft.copilotMessage}</td>
+                </tr>
+                <tr class="font-bold">
+                  <td class="py-3 px-2">Average Cost per Ticket</td>
+                  <td class="py-3 px-2">{slideData.perInteractionCosts.n8n.averageCostPerTicket}</td>
+                  <td class="py-3 px-2">{slideData.perInteractionCosts.microsoft.averageCostPerTicket}</td>
+                </tr>
+              </tbody>
+            </table>
+          </CardContent>
+        </Card>
+
+        <Card className="w-full">
+          <CardContent className="p-8">
+            <h3 class="text-2xl font-semibold mb-6">Cost Comparison</h3>
+            <CostComparisonChart client:load data={slideData.chartData} title="Cost Comparison by Volume" />
+          </CardContent>
+        </Card>
+      </div>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

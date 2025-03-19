@@ -1,0 +1,63 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+import ArchitectureDiagram from '../../components/ArchitectureDiagram';
+
+// Slide content data
+const slideData = {
+  title: "Microsoft CoPilot Stack Overview",
+  pageNumber: 4,
+  totalPages: 19,
+  components: [
+    { name: "Power Apps", description: "Low-code application development platform", color: "border-blue-500" },
+    { name: "Dataverse", description: "Cloud-based storage solution for business applications", color: "border-green-500" },
+    { name: "CoPilot Studio", description: "AI-powered virtual agent platform", color: "border-purple-500" },
+    { name: "SharePoint", description: "Document management and storage system", color: "border-yellow-500" },
+    { name: "FreshServices API", description: "Integration with ticket management system", color: "border-red-500" }
+  ],
+  connections: [
+    { from: "CoPilot Studio", to: "Power Apps", label: "Embedded virtual agent" },
+    { from: "Power Apps", to: "Dataverse", label: "Data storage" },
+    { from: "Dataverse", to: "SharePoint", label: "Document storage" },
+    { from: "CoPilot Studio", to: "FreshServices API", label: "Ticket operations" }
+  ],
+  prevPage: "/btcs/page-3",
+  nextPage: "/btcs/page-5"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="space-y-8">
+    <AnimatedContent client:load>
+      <h1 class="text-4xl font-bold mb-6">{slideData.title}</h1>
+      
+      <Card className="w-full">
+        <CardContent className="p-6">
+          <ArchitectureDiagram 
+            client:load
+            title="Microsoft CoPilot Stack Architecture"
+            components={slideData.components}
+            connections={slideData.connections}
+          />
+        </CardContent>
+      </Card>
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.4}>
+      <div class="mt-6 p-4 bg-muted rounded-lg">
+        <h3 class="font-semibold mb-2">Key Benefits</h3>
+        <ul class="space-y-2 list-disc pl-5">
+          <li>Tight integration with existing Microsoft ecosystem</li>
+          <li>Low-code development reduces implementation time</li>
+          <li>Centralized administration through Power Platform admin center</li>
+          <li>Built-in compliance and security features</li>
+        </ul>
+      </div>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

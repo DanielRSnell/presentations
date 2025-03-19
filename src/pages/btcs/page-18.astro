@@ -1,0 +1,104 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+
+// Slide content data
+const slideData = {
+  title: "Appendix: Technical Details",
+  pageNumber: 18,
+  totalPages: 19,
+  apiEndpoints: [
+    { name: "FreshServices Tickets API", endpoint: "https://domain.freshservice.com/api/v2/tickets", description: "Create, update, and query tickets" },
+    { name: "FreshServices Webhook", endpoint: "https://domain.freshservice.com/api/v2/webhooks", description: "Register webhook endpoints for ticket events" },
+    { name: "N8N Webhook Endpoint", endpoint: "https://n8n.yourdomain.com/webhook/freshservice", description: "Receive webhook events from FreshServices" }
+  ],
+  databaseSchemaItems: [
+    { entity: "tickets", description: "Stores ticket data with relationships to other entities", fields: ["id", "display_id", "subject", "description", "status", "priority", "created_at", "updated_at"] },
+    { entity: "notes", description: "Stores ticket conversation history", fields: ["id", "ticket_id", "user_id", "body", "created_at"] },
+    { entity: "users", description: "Stores user information", fields: ["id", "name", "email", "role", "department_id"] },
+    { entity: "departments", description: "Stores department information", fields: ["id", "name", "description"] }
+  ],
+  prevPage: "/btcs/page-16",
+  nextPage: "/btcs/page-18"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="space-y-8">
+    <AnimatedContent client:load>
+      <h1 class="text-4xl font-bold mb-6">{slideData.title}</h1>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card className="w-full">
+          <CardContent className="p-6">
+            <h3 class="text-xl font-semibold mb-4">API Endpoints</h3>
+            <div class="space-y-4">
+              {slideData.apiEndpoints.map((api) => (
+                <div class="border-l-4 border-blue-500 pl-4 py-2">
+                  <h4 class="font-bold">{api.name}</h4>
+                  <p class="font-mono text-sm bg-muted p-1 rounded mt-1">{api.endpoint}</p>
+                  <p class="text-sm text-muted-foreground mt-1">{api.description}</p>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card className="w-full">
+          <CardContent className="p-6">
+            <h3 class="text-xl font-semibold mb-4">Database Schema</h3>
+            <div class="space-y-4">
+              {slideData.databaseSchemaItems.map((item) => (
+                <div class="border-l-4 border-green-500 pl-4 py-2">
+                  <h4 class="font-bold">{item.entity}</h4>
+                  <p class="text-sm text-muted-foreground">{item.description}</p>
+                  <div class="flex flex-wrap gap-1 mt-2">
+                    {item.fields.map((field) => (
+                      <span class="bg-muted text-xs px-2 py-1 rounded">{field}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.4}>
+      <Card className="w-full">
+        <CardContent className="p-6">
+          <h3 class="text-xl font-semibold mb-4">Workflow Example: Ticket Prioritization</h3>
+          <pre class="bg-muted p-4 rounded-md overflow-x-auto text-sm">
+{`// N8N JavaScript Code for Ticket Prioritization
+function prioritizeTicket(ticket) {
+  const keywords = {
+    high: ['urgent', 'critical', 'emergency', 'down', 'broken'],
+    medium: ['issue', 'problem', 'error', 'not working'],
+    low: ['question', 'how to', 'help with', 'guidance']
+  };
+  
+  // Check subject and description for priority keywords
+  const subject = ticket.subject.toLowerCase();
+  const description = ticket.description.toLowerCase();
+  
+  // Determine priority based on keywords
+  if (keywords.high.some(word => subject.includes(word) || description.includes(word))) {
+    return 'high';
+  } else if (keywords.medium.some(word => subject.includes(word) || description.includes(word))) {
+    return 'medium';
+  } else {
+    return 'low';
+  }
+}`}
+          </pre>
+        </CardContent>
+      </Card>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

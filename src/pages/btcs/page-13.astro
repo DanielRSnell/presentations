@@ -1,0 +1,89 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+
+// Slide content data
+const slideData = {
+  title: "Implementation Timeline",
+  pageNumber: 13,
+  totalPages: 19,
+  msStackTimeline: [
+    { phase: "Requirements & Design", duration: "4 weeks", activities: ["Gather requirements", "Design Power Apps interfaces", "Plan Dataverse schema"] },
+    { phase: "Development", duration: "8 weeks", activities: ["Configure Dataverse", "Develop Power Apps", "Set up CoPilot Studio", "Configure SharePoint integration"] },
+    { phase: "Testing", duration: "3 weeks", activities: ["User acceptance testing", "Performance testing", "Security validation"] },
+    { phase: "Deployment", duration: "2 weeks", activities: ["Production deployment", "User training", "Documentation"] }
+  ],
+  n8nTimeline: [
+    { phase: "Requirements & Design", duration: "4 weeks", activities: ["Gather requirements", "Design workflow architecture", "Plan database schema"] },
+    { phase: "Development", duration: "10 weeks", activities: ["Set up Azure VPS", "Configure N8N workflows", "Implement Supabase database", "Develop NocoDB admin interface"] },
+    { phase: "Testing", duration: "3 weeks", activities: ["User acceptance testing", "Performance testing", "Security validation"] },
+    { phase: "Deployment", duration: "2 weeks", activities: ["Production deployment", "User training", "Documentation"] }
+  ],
+  prevPage: "/btcs/page-11",
+  nextPage: "/btcs/page-13"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="space-y-8">
+    <AnimatedContent client:load>
+      <h1 class="text-4xl font-bold mb-6">{slideData.title}</h1>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card className="w-full">
+          <CardContent className="p-6">
+            <h3 class="text-xl font-semibold mb-4">Microsoft Stack Timeline</h3>
+            <div class="space-y-4">
+              {slideData.msStackTimeline.map((phase) => (
+                <div class="border-l-4 border-blue-500 pl-4 py-2">
+                  <h4 class="font-bold">{phase.phase} <span class="font-normal text-muted-foreground">({phase.duration})</span></h4>
+                  <ul class="list-disc pl-5 mt-2">
+                    {phase.activities.map((activity) => (
+                      <li>{activity}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card className="w-full">
+          <CardContent className="p-6">
+            <h3 class="text-xl font-semibold mb-4">N8N Solution Timeline</h3>
+            <div class="space-y-4">
+              {slideData.n8nTimeline.map((phase) => (
+                <div class="border-l-4 border-purple-500 pl-4 py-2">
+                  <h4 class="font-bold">{phase.phase} <span class="font-normal text-muted-foreground">({phase.duration})</span></h4>
+                  <ul class="list-disc pl-5 mt-2">
+                    {phase.activities.map((activity) => (
+                      <li>{activity}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.4}>
+      <div class="mt-6 p-4 bg-muted rounded-lg">
+        <h3 class="font-semibold mb-2">Timeline Comparison</h3>
+        <p>
+          The Microsoft Stack implementation may be slightly faster due to the low-code approach and 
+          pre-built components. The N8N solution requires more custom development time but offers greater 
+          flexibility and customization. Both approaches follow similar phases, with the main difference 
+          being in the development timeline. Total implementation time is estimated at 17 weeks for the 
+          Microsoft Stack and 19 weeks for the N8N solution.
+        </p>
+      </div>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

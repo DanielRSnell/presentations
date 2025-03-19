@@ -1,0 +1,85 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+
+// Slide content data
+const slideData = {
+  title: "Recommendation & Next Steps",
+  pageNumber: 17,
+  totalPages: 19,
+  msStackAdvantages: [
+    "Tight integration with existing Microsoft ecosystem",
+    "Low-code development reduces implementation time",
+    "Managed updates and centralized administration",
+    "Familiar interface for Microsoft-centric organizations"
+  ],
+  n8nAdvantages: [
+    "Greater flexibility for custom integrations and workflows",
+    "Advanced webhook processing and data transformations",
+    "Lower long-term costs, especially with many users",
+    "Open-source extensibility and custom development options"
+  ],
+  recommendation: "Based on the specific requirements for FreshServices ticket management, the N8N-based solution offers superior flexibility, integration capabilities, and long-term cost benefits. For organizations with complex workflow needs and a desire for customization, the N8N approach provides significant advantages.",
+  nextSteps: [
+    "Conduct a detailed requirements workshop",
+    "Develop proof-of-concept for critical workflows",
+    "Finalize infrastructure and hosting decisions",
+    "Create implementation roadmap with phased approach"
+  ],
+  prevPage: "/btcs/page-15",
+  nextPage: "/btcs/page-17"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="space-y-8">
+    <AnimatedContent client:load>
+      <h1 class="text-4xl font-bold mb-6">{slideData.title}</h1>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <Card className="w-full">
+          <CardContent className="p-6">
+            <h3 class="text-xl font-semibold mb-4">Microsoft Stack Advantages</h3>
+            <ul class="space-y-2 list-disc pl-5">
+              {slideData.msStackAdvantages.map((advantage) => (
+                <li>{advantage}</li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+        
+        <Card className="w-full">
+          <CardContent className="p-6">
+            <h3 class="text-xl font-semibold mb-4">N8N Solution Advantages</h3>
+            <ul class="space-y-2 list-disc pl-5">
+              {slideData.n8nAdvantages.map((advantage) => (
+                <li>{advantage}</li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      </div>
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.3}>
+      <Card className="w-full">
+        <CardContent className="p-6">
+          <h3 class="text-xl font-semibold mb-4">Recommendation</h3>
+          <p class="mb-6">{slideData.recommendation}</p>
+          
+          <h3 class="text-xl font-semibold mb-4">Implementation Roadmap</h3>
+          <ol class="space-y-2 list-decimal pl-5">
+            {slideData.nextSteps.map((step) => (
+              <li>{step}</li>
+            ))}
+          </ol>
+        </CardContent>
+      </Card>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

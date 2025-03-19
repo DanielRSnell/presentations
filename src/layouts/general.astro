@@ -1,0 +1,45 @@
+---
+import "@/styles/global.css";
+// General layout for non-presentation pages
+interface Props {
+  content: {
+    title: string;
+    description?: string;
+  };
+}
+
+const { content } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{content.title}</title>
+    <meta name="description" content={content.description || 'Presentation Library'} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="min-h-screen bg-background text-foreground">
+    <div class="flex flex-col min-h-screen">
+      <header class="border-b py-4">
+        <div class="max-w-4xl mx-auto px-4 flex items-center justify-between">
+          <a href="/" class="flex items-center space-x-2">
+            <img src="/images/logo.svg" alt="Umbral" class="h-8" />
+            <span class="font-semibold text-xl">Umbral</span>
+          </a>
+        </div>
+      </header>
+
+      <main class="flex-1">
+        <slot />
+      </main>
+
+      <footer class="border-t py-4 text-center text-sm text-muted-foreground">
+        <div class="max-w-4xl mx-auto px-4">
+          <p>© {new Date().getFullYear()} Umbral. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

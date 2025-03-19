@@ -1,0 +1,63 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+import ComparisonTable from '../../components/ComparisonTable';
+
+// Slide content data
+const slideData = {
+  title: "FreshServices Integration Specifics",
+  pageNumber: 8,
+  totalPages: 19,
+  comparisonItems: {
+    "API Handling": {
+      msStack: ["Limited FreshServices API handling", "Basic authentication", "Connector-based approach"],
+      n8nStack: ["Full FreshServices API support", "Advanced authentication", "Custom endpoint handling"]
+    },
+    "Webhook Processing": {
+      msStack: ["Basic webhook reception", "Limited processing options", "Constrained data handling"],
+      n8nStack: ["Advanced webhook processing", "Custom payload parsing", "Conditional webhook routing"]
+    },
+    "Ticket Processing": {
+      msStack: ["Basic ticket creation/updates", "Limited prioritization logic", "Template-based responses"],
+      n8nStack: ["Advanced ticket prioritization", "Custom escalation workflows", "Dynamic response generation"]
+    },
+    "Historical Analysis": {
+      msStack: ["Basic reporting", "Limited historical data analysis", "Predefined metrics"],
+      n8nStack: ["Historical data analysis", "Custom reporting", "Trend identification"]
+    }
+  },
+  prevPage: "/btcs/page-7",
+  nextPage: "/btcs/page-9"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="space-y-8">
+    <AnimatedContent client:load>
+      <h1 class="text-4xl font-bold mb-6">{slideData.title}</h1>
+      
+      <ComparisonTable 
+        client:load
+        title="FreshServices Integration Specifics"
+        items={slideData.comparisonItems}
+      />
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.4}>
+      <div class="mt-6 p-4 bg-muted rounded-lg">
+        <h3 class="font-semibold mb-2">FreshServices Integration Advantages</h3>
+        <p>
+          The N8N-based solution offers significant advantages for FreshServices integration, particularly
+          in handling complex ticket workflows and webhook processing. The ability to implement custom
+          business logic for ticket prioritization and routing can lead to more efficient support operations
+          and improved response times.
+        </p>
+      </div>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

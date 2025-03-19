@@ -1,0 +1,65 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+import ComparisonTable from '../../components/ComparisonTable';
+
+// Slide content data
+const slideData = {
+  title: "Security Comparison",
+  pageNumber: 14,
+  totalPages: 19,
+  comparisonItems: {
+    "Compliance": {
+      msStack: ["Microsoft security compliance", "Built-in compliance features", "Regular security audits"],
+      n8nStack: ["Azure security compliance", "Custom compliance implementation", "Self-managed security controls"]
+    },
+    "Data Residency": {
+      msStack: ["Microsoft data centers", "Geographic data controls", "Microsoft data handling policies"],
+      n8nStack: ["Azure data centers", "Full control over data location", "Custom data handling policies"]
+    },
+    "Authentication": {
+      msStack: ["Microsoft identity platform", "Azure AD integration", "Standard MFA options"],
+      n8nStack: ["Custom authentication options", "Flexible identity providers", "Advanced MFA implementation"]
+    },
+    "Encryption": {
+      msStack: ["Microsoft-managed encryption", "Standard encryption protocols", "Limited customization"],
+      n8nStack: ["Custom encryption approaches", "Flexible encryption options", "Full control over encryption keys"]
+    }
+  },
+  prevPage: "/btcs/page-12",
+  nextPage: "/btcs/page-14"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="space-y-8">
+    <AnimatedContent client:load>
+      <h1 class="text-4xl font-bold mb-6">{slideData.title}</h1>
+      
+      <ComparisonTable 
+        client:load
+        title="Security Comparison"
+        items={slideData.comparisonItems}
+      />
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.4}>
+      <div class="mt-6 p-4 bg-muted rounded-lg">
+        <h3 class="font-semibold mb-2">Security Considerations</h3>
+        <p>
+          Both solutions can be implemented with strong security controls. The Microsoft Stack offers 
+          a more managed security approach with built-in compliance features and Microsoft's security 
+          infrastructure. The N8N solution provides more flexibility and control over security 
+          implementation but requires more hands-on management of security controls. Organizations 
+          with specific security requirements or compliance needs should evaluate both approaches 
+          against their security policies.
+        </p>
+      </div>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

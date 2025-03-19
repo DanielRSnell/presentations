@@ -1,0 +1,67 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+import ArchitectureDiagram from '../../components/ArchitectureDiagram';
+
+// Slide content data
+const slideData = {
+  title: "N8N-Based Solution Overview",
+  pageNumber: 5,
+  totalPages: 19,
+  components: [
+    { name: "N8N", description: "Hosted on Azure VPS, workflow automation platform", color: "border-blue-500" },
+    { name: "Supabase Postgres", description: "Database for ticket and workflow data", color: "border-green-500" },
+    { name: "NocoDB", description: "Admin interface for business users", color: "border-purple-500" },
+    { name: "CoPilot", description: "Acts as a router for workflows", color: "border-yellow-500" },
+    { name: "SharePoint", description: "Document storage integration", color: "border-orange-500" },
+    { name: "FreshServices", description: "API and webhook connections", color: "border-red-500" }
+  ],
+  connections: [
+    { from: "FreshServices", to: "N8N", label: "Webhooks" },
+    { from: "N8N", to: "Supabase Postgres", label: "Data storage" },
+    { from: "Supabase Postgres", to: "NocoDB", label: "Admin interface" },
+    { from: "CoPilot", to: "N8N", label: "Workflow routing" },
+    { from: "N8N", to: "SharePoint", label: "Document operations" },
+    { from: "N8N", to: "FreshServices", label: "API operations" }
+  ],
+  prevPage: "/btcs/page-4",
+  nextPage: "/btcs/page-6"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="space-y-8">
+    <AnimatedContent client:load>
+      <h1 class="text-4xl font-bold mb-6">{slideData.title}</h1>
+      
+      <Card className="w-full">
+        <CardContent className="p-6">
+          <ArchitectureDiagram 
+            client:load
+            title="N8N-Based Solution Architecture"
+            components={slideData.components}
+            connections={slideData.connections}
+          />
+        </CardContent>
+      </Card>
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.4}>
+      <div class="mt-6 p-4 bg-muted rounded-lg">
+        <h3 class="font-semibold mb-2">Key Benefits</h3>
+        <ul class="space-y-2 list-disc pl-5">
+          <li>Open-source extensibility with 300+ pre-built integrations</li>
+          <li>Advanced webhook processing and custom JavaScript transformations</li>
+          <li>Flexible hosting options on Azure VPS</li>
+          <li>Direct database operations with Supabase Postgres</li>
+          <li>Business-friendly admin interface with NocoDB</li>
+        </ul>
+      </div>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

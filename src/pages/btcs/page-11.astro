@@ -1,0 +1,177 @@
+---
+import SlideLayout from '../../layouts/slide.astro';
+import AnimatedContent from '../../components/AnimatedContent';
+import { Card, CardContent } from '@/components/ui/card';
+import ProjectionChart from '../../components/ProjectionChart';
+
+// Slide content data
+const slideData = {
+  title: "Cost Analysis: Annual & Projections",
+  pageNumber: 11,
+  totalPages: 19,
+  annualCosts: {
+    n8n: {
+      fixed: "$1,092.00",
+      interaction: "$132.00",
+      total: "$1,224.00",
+      perTicket: "$0.19"
+    },
+    microsoft: {
+      fixed: "$0.00",
+      interaction: "$8,250.00 to $13,200.00",
+      total: "$8,250.00 to $13,200.00",
+      perTicket: "$1.25 to $2.00"
+    }
+  },
+  threeYearProjection: {
+    n8n: {
+      year1: "$1,224.00",
+      year2: "$1,236.00",
+      year3: "$1,248.60",
+      total: "$3,708.60"
+    },
+    microsoft: {
+      year1: "$8,250.00 to $13,200.00",
+      year2: "$9,075.00 to $14,520.00",
+      year3: "$9,982.50 to $15,972.00",
+      total: "$27,307.50 to $43,692.00"
+    }
+  },
+  projectionChartData: [
+    {
+      year: "Year 1",
+      n8n: 1224,
+      microsoftLow: 8250,
+      microsoftHigh: 13200
+    },
+    {
+      year: "Year 2",
+      n8n: 1236,
+      microsoftLow: 9075,
+      microsoftHigh: 14520
+    },
+    {
+      year: "Year 3",
+      n8n: 1248.60,
+      microsoftLow: 9982.50,
+      microsoftHigh: 15972
+    }
+  ],
+  highlights: [
+    "The N8N solution requires a fixed infrastructure cost of $91/month regardless of ticket volume.",
+    "The N8N solution becomes increasingly cost-effective as ticket volume grows.",
+    "The fixed costs of the N8N solution are offset after processing approximately 73 tickets per month.",
+    "The N8N approach could save approximately $23,598.90 to $39,983.40 over three years."
+  ],
+  prevPage: "/btcs/page-10",
+  nextPage: "/btcs/page-12"
+};
+---
+
+<SlideLayout 
+  title={slideData.title}
+  pageNumber={slideData.pageNumber}
+  totalPages={slideData.totalPages}
+>
+  <div class="space-y-8">
+    <AnimatedContent client:load>
+      <h1 class="text-3xl font-bold mb-8">{slideData.title}</h1>
+      
+      <div class="grid grid-cols-1 gap-8">
+        <Card className="w-full">
+          <CardContent className="p-8">
+            <h3 class="text-2xl font-semibold mb-6">Annual Cost (6,600 Tickets)</h3>
+            <table class="w-full border-collapse text-lg">
+              <thead>
+                <tr class="border-b border-gray-300">
+                  <th class="text-left py-3 px-2">Metric</th>
+                  <th class="text-left py-3 px-2">N8N Solution</th>
+                  <th class="text-left py-3 px-2">Microsoft Solution</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-200">
+                  <td class="py-3 px-2">Fixed Annual Costs</td>
+                  <td class="py-3 px-2">{slideData.annualCosts.n8n.fixed}</td>
+                  <td class="py-3 px-2">{slideData.annualCosts.microsoft.fixed}</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="py-3 px-2">Interaction Costs</td>
+                  <td class="py-3 px-2">{slideData.annualCosts.n8n.interaction}</td>
+                  <td class="py-3 px-2">{slideData.annualCosts.microsoft.interaction}</td>
+                </tr>
+                <tr class="border-b border-gray-200 font-bold">
+                  <td class="py-3 px-2">Total Annual Cost</td>
+                  <td class="py-3 px-2">{slideData.annualCosts.n8n.total}</td>
+                  <td class="py-3 px-2">{slideData.annualCosts.microsoft.total}</td>
+                </tr>
+                <tr class="font-bold">
+                  <td class="py-3 px-2">Average Cost per Ticket</td>
+                  <td class="py-3 px-2">{slideData.annualCosts.n8n.perTicket}</td>
+                  <td class="py-3 px-2">{slideData.annualCosts.microsoft.perTicket}</td>
+                </tr>
+              </tbody>
+            </table>
+          </CardContent>
+        </Card>
+        
+        <Card className="w-full">
+          <CardContent className="p-8">
+            <h3 class="text-2xl font-semibold mb-6">Three-Year Cost Projection</h3>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div>
+                <table class="w-full border-collapse text-lg">
+                  <thead>
+                    <tr class="border-b border-gray-300">
+                      <th class="text-left py-3 px-2">Timeframe</th>
+                      <th class="text-left py-3 px-2">N8N Solution</th>
+                      <th class="text-left py-3 px-2">Microsoft Solution</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-b border-gray-200">
+                      <td class="py-3 px-2">Year 1 (6,600 tickets)</td>
+                      <td class="py-3 px-2">{slideData.threeYearProjection.n8n.year1}</td>
+                      <td class="py-3 px-2">{slideData.threeYearProjection.microsoft.year1}</td>
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                      <td class="py-3 px-2">Year 2 (10% growth)</td>
+                      <td class="py-3 px-2">{slideData.threeYearProjection.n8n.year2}</td>
+                      <td class="py-3 px-2">{slideData.threeYearProjection.microsoft.year2}</td>
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                      <td class="py-3 px-2">Year 3 (10% growth)</td>
+                      <td class="py-3 px-2">{slideData.threeYearProjection.n8n.year3}</td>
+                      <td class="py-3 px-2">{slideData.threeYearProjection.microsoft.year3}</td>
+                    </tr>
+                    <tr class="font-bold">
+                      <td class="py-3 px-2">3-Year Total</td>
+                      <td class="py-3 px-2">{slideData.threeYearProjection.n8n.total}</td>
+                      <td class="py-3 px-2">{slideData.threeYearProjection.microsoft.total}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <ProjectionChart client:load data={slideData.projectionChartData} title="Three-Year Cost Projection" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </AnimatedContent>
+    
+    <AnimatedContent client:load delay={0.3}>
+      <Card className="w-full">
+        <CardContent className="p-8">
+          <h3 class="text-2xl font-semibold mb-6">Cost Comparison Highlights</h3>
+          <ul class="space-y-3 list-disc pl-6 text-lg">
+            {slideData.highlights.map((highlight) => (
+              <li>{highlight}</li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
+    </AnimatedContent>
+  </div>
+</SlideLayout>

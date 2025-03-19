@@ -1,0 +1,90 @@
+---
+import MainLayout from './main.astro';
+import { Button } from '@/components/ui/button';
+import SlideNavigation from '../components/SlideNavigation';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  pageNumber: number;
+  totalPages: number;
+}
+
+const { title, subtitle, pageNumber, totalPages } = Astro.props;
+
+// Calculate previous and next page URLs
+const prevPage = pageNumber > 1 
+  ? pageNumber === 2 
+    ? '/btcs/' 
+    : `/btcs/page-${pageNumber - 1}` 
+  : null;
+
+const nextPage = pageNumber < totalPages 
+  ? `/btcs/page-${pageNumber + 1}` 
+  : null;
+---
+
+<MainLayout content={{ title: `${title} | Slide ${pageNumber}` }}>
+  <div class="flex flex-col min-h-screen" transition:animate="slide">
+    <!-- Header with navigation -->
+    <header class="p-4 flex justify-between items-center">
+      <div class="text-sm text-muted-foreground">
+        Slide {pageNumber} of {totalPages}
+      </div>
+      <div class="flex items-center justify-center">
+        <img src="/images/logo.svg" alt="Logo" class="h-10" />
+      </div>
+      <div class="flex gap-2">
+        {prevPage && (
+          <a href={prevPage}>
+            <Button variant="outline" size="sm">Previous</Button>
+          </a>
+        )}
+        {nextPage && (
+          <a href={nextPage}>
+            <Button variant="outline" size="sm">Next</Button>
+          </a>
+        )}
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="flex-1 flex flex-col justify-center p-8 max-w-6xl mx-auto w-full">
+      <div class="space-y-8">
+        <div class="slide-content">
+          <slot />
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="p-4 text-center text-sm text-muted-foreground">
+      Agent Architecture Comparison {new Date().getFullYear()}
+    </footer>
+    
+    <!-- Slide Navigation -->
+    <SlideNavigation 
+      client:load
+      currentSlide={pageNumber}
+      totalSlides={totalPages}
+      baseUrl="/btcs"
+    />
+  </div>
+</MainLayout>
+
+<style>
+  .slide-content {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
